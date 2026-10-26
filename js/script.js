@@ -16,7 +16,7 @@ setTimeout(() => {
         passwordScreen.classList.remove('hidden');
         passwordScreen.style.zIndex = "1";
     }, 3000); // ننتظر ثانية حتى ينتهي تأثير الاختفاء
-}, 1000);
+}, 10000);
 
 // 2. التحقق من كلمة السر
 unlockBtn.addEventListener('click', () => {
