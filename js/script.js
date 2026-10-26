@@ -9,7 +9,7 @@ const unlockBtn = document.getElementById('unlock-btn');
 const errorMsg = document.getElementById('error-msg');
 
 // الرقم السري مدة المقلب (حالياً دقيقة = 60000)
-const CORRECT_PASSWORD = "2910"; 
+const CORRECT_PASSWORD = "1029"; 
 
 setTimeout(() => {
     fakeError.classList.add('hidden');
