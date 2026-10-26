@@ -31,7 +31,7 @@ unlockBtn.addEventListener('click', () => {
 });
 
 // متغيرات الترحيب والموسيقى
-const welcomeTextElement = document.getElementById('welcome-text');
+const welcomeTextElement = document.getElementById(' هلا والله بكهلتنا كل عام وانتي بخير وصحة وسلامة والله يجعلها سنين مديدة وسعيدة الاغلب شارك في الفقره الجاية ونختبر ذاكرتك خرفتي ولا باقي (( مو مهم النتيجة اهم شيء تنبسطي )) ');
 const musicControls = document.getElementById('music-controls');
 const seriousBtn = document.getElementById('serious-music-btn');
 const funnyBtn = document.getElementById('funny-music-btn');
