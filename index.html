@@ -9,11 +9,16 @@
 <body>
     
 <!-- الشاشة الأولى: المقلب (خطأ 404) -->
-    <div id="fake-error" class="screen flex-center">
-        <!-- إضافات الكورنيش والمطر -->
-        <div class="lightning"></div> <!-- البرق -->
-        <div class="old-woman">👵☂️🚶‍♀️</div> <!-- العجوز -->
+    <div id="fake-error" class="screen">
+        <!-- خلفية فيديو واقعية للمطر -->
+        <video autoplay muted loop playsinline class="bg-video">
+            <!-- رابط فيديو مطر غزير وواقعي (مؤقت حتى تضع الفيديو الخاص بك) -->
+            <source src="https://cdn.pixabay.com/video/2020/05/25/40141-426177118_large.mp4" type="video/mp4">
+        </video>
         
+        <!-- طبقة شفافة سوداء لتوضيح النص فوق الفيديو -->
+        <div class="video-overlay"></div>
+
         <div class="error-container">
             <h3>Error 404</h3>
             <p>النظام خرب ياكهلة كبرتي!</p>
