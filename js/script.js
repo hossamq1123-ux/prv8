@@ -7,7 +7,7 @@ const unlockBtn = document.getElementById('unlock-btn');
 const errorMsg = document.getElementById('error-msg');
 
 // كلمة السر (اطلب من العميل تاريخ ميلاد البنت، مثلاً لو كان 15 مايو نجعله 1505)
-const CORRECT_PASSWORD = "1505"; 
+const CORRECT_PASSWORD = "1029"; 
 
 // 1. إخفاء المقلب بعد 3 ثواني وإظهار شاشة القفل
 setTimeout(() => {
@@ -15,8 +15,8 @@ setTimeout(() => {
     setTimeout(() => {
         passwordScreen.classList.remove('hidden');
         passwordScreen.style.zIndex = "1";
-    }, 1000); // ننتظر ثانية حتى ينتهي تأثير الاختفاء
-}, 3000);
+    }, 3000); // ننتظر ثانية حتى ينتهي تأثير الاختفاء
+}, 60000);
 
 // 2. التحقق من كلمة السر
 unlockBtn.addEventListener('click', () => {
