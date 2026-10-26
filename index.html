@@ -8,12 +8,11 @@
 </head>
 <body>
     
-<!-- الشاشة الأولى: المقلب (خطأ 404) -->
+    <!-- الشاشة الأولى: المقلب (خطأ 404) -->
     <div id="fake-error" class="screen">
         <!-- خلفية فيديو واقعية للمطر -->
         <video autoplay muted loop playsinline class="bg-video">
-            <!-- رابط فيديو مطر غزير وواقعي (مؤقت حتى تضع الفيديو الخاص بك) -->
-            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            <source src="https://cdn.pixabay.com/video/2020/05/25/40141-426177118_large.mp4" type="video/mp4">
         </video>
         
         <!-- طبقة شفافة سوداء لتوضيح النص فوق الفيديو -->
@@ -21,30 +20,30 @@
 
         <div class="error-container">
             <h3>Error 404</h3>
-            <p> حتى النظام خرب ياكهلة كبرتي ما شاء الله</p>
+            <p>حتى النظام خرب ياكهلة كبرتي ما شاء الله</p>
         </div>
     </div>
     
     <!-- الشاشة الثانية: شاشة فك الشفرة (كلمة السر) -->
     <div id="password-screen" class="screen flex-center hidden">
         <div class="lock-container">
-            <h2> كلمة سر منك وفيك حليها </h2>
-            <p>يلا يا مواليد 2002 اكتبي هنا</p>
+            <h2>كلمة سر منك وفيك حليها</h2>
+            <p>يلا يا مواليد 2002 اكتبي هنا:</p>
             <input type="password" id="password-input" placeholder="تبين المح لك بعد !! مافييييييه">
             <button id="unlock-btn">افتح القفل</button>
             <p id="error-msg" class="error-text hidden">هذا وانتي حارثية حليتيها خطأ!</p>
         </div>
     </div>
 
-    <<!-- الشاشة الثالثة: المحتوى الرئيسي (الترحيب) -->
-    <div id="main-content" class="screen hidden flex-center">
+    <!-- الشاشة الثالثة: المحتوى الرئيسي (الترحيب) -->
+    <div id="main-content" class="screen flex-center hidden">
         
         <!-- أزرار الموسيقى -->
         <div class="music-controls hidden" id="music-controls">
-            <p style="margin-bottom: 15px;">اختاري المود قبل ما تقرين</p>
+            <p style="margin-bottom: 15px;">اختاري المود قبل ما تقرين:</p>
             <div>
-                <button id="serious-music-btn">اغنية هادية</button>
-                <button id="funny-music-btn">افضل اغنية لك</button>
+                <button id="serious-music-btn">موسيقى هادية 🎵</button>
+                <button id="funny-music-btn">موسيقى فصلة 🤪</button>
             </div>
         </div>
         
@@ -53,12 +52,14 @@
             <h1 id="welcome-text"></h1>
         </div>
 
-        <!-- زر الانتقال للعبة (يظهر بعد انتهاء النص) -->
-        <button id="next-game-btn" class="hidden">جاهزة للتحدي؟ </button>
+        <!-- زر الانتقال للعبة -->
+        <button id="next-game-btn" class="hidden">جاهزة للتحدي؟ 👀</button>
 
         <!-- ملفات الصوت -->
         <audio id="serious-audio" src="assets/serious.mp3" loop></audio>
         <audio id="funny-audio" src="assets/funny.mp3" loop></audio>
     </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
