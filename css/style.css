@@ -144,6 +144,62 @@ button:hover {
     background: #ff6b81;
 }
 
+/* =========================================
+   تنسيقات شاشة الترحيب والموسيقى
+   ========================================= */
+#main-content {
+    background-color: #1a1a2e; 
+    padding: 20px;
+    transition: background-color 1s ease; /* انتقال ناعم للون الخلفية */
+}
+
+.message-box {
+    min-height: 100px;
+    margin: 30px 0;
+    width: 80%;
+    max-width: 600px;
+}
+
+#welcome-text {
+    font-size: 2rem;
+    color: #e94560;
+    line-height: 1.6;
+    text-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
+    /* تأثير مؤشر الكتابة */
+    border-left: 3px solid #e94560;
+    padding-left: 5px;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+.music-controls {
+    margin-bottom: 20px;
+}
+
+.music-controls button {
+    background-color: #0f3460;
+    margin: 5px;
+}
+        
+.music-controls button:hover {
+    background-color: #16213e;
+}
+
+#next-game-btn {
+    background-color: #2ed573;
+    margin-top: 30px;
+    font-size: 1.3rem;
+    padding: 15px 30px;
+    animation: popIn 0.5s ease-out;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
 .error-text {
     color: #ff4757;
     margin-top: 10px;
