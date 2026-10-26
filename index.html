@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مفاجأة خاصة</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- الشاشة الأولى: المقلب (خطأ 404) -->
+    <div id="fake-error" class="screen flex-center">
+        <div class="error-container">
+            <h1>Error 404</h1>
+            <p>System halted: Age limit exceeded. You are too old to view this page!</p>
+        </div>
+    </div>
+
+    <!-- الشاشة الثانية: شاشة فك الشفرة (كلمة السر) -->
+    <div id="password-screen" class="screen flex-center hidden">
+        <div class="lock-container">
+            <h2>فك الشفرة للوصول إلى الهدية 🔒</h2>
+            <p>أدخلي تاريخ ميلادك (كلمة السر):</p>
+            <input type="password" id="password-input" placeholder="مثال: 1205 (يوم وشهر)">
+            <button id="unlock-btn">افتح القفل</button>
+            <p id="error-msg" class="error-text hidden">تاريخ خاطئ، حاولي مرة أخرى!</p>
+        </div>
+    </div>
+
+    <!-- الشاشة الثالثة: المحتوى الرئيسي (الترحيب) -->
+    <div id="main-content" class="screen hidden">
+        <!-- سنضيف تأثير الآلة الكاتبة والألعاب هنا لاحقاً -->
+        <h1 id="welcome-text"></h1>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
