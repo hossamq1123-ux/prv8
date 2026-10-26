@@ -36,12 +36,29 @@
         </div>
     </div>
 
-    <!-- الشاشة الثالثة: المحتوى الرئيسي (الترحيب) -->
-    <div id="main-content" class="screen hidden">
-        <!-- سنضيف تأثير الآلة الكاتبة والألعاب هنا لاحقاً -->
-        <h1 id="welcome-text"></h1>
-    </div>
+    <<!-- الشاشة الثالثة: المحتوى الرئيسي (الترحيب) -->
+    <div id="main-content" class="screen hidden flex-center">
+        
+        <!-- أزرار الموسيقى -->
+        <div class="music-controls hidden" id="music-controls">
+            <p style="margin-bottom: 15px;">اختاري المود قبل ما تقرين</p>
+            <div>
+                <button id="serious-music-btn">اغنية هادية</button>
+                <button id="funny-music-btn">افضل اغنية لك</button>
+            </div>
+        </div>
+        
+        <!-- رسالة الترحيب -->
+        <div class="message-box">
+            <h1 id="welcome-text"></h1>
+        </div>
 
-    <script src="js/script.js"></script>
+        <!-- زر الانتقال للعبة (يظهر بعد انتهاء النص) -->
+        <button id="next-game-btn" class="hidden">جاهزة للتحدي؟ </button>
+
+        <!-- ملفات الصوت -->
+        <audio id="serious-audio" src="assets/serious.mp3" loop></audio>
+        <audio id="funny-audio" src="assets/funny.mp3" loop></audio>
+    </div>
 </body>
 </html>
