@@ -17,7 +17,7 @@ setTimeout(() => {
         passwordScreen.classList.remove('hidden');
         passwordScreen.style.zIndex = "5";
     }, 800); // 800 جزء من الثانية ليتماشى مع نعومة الانتقال الجديد
-}, 60000);
+}, 10000);
 
 // التحقق من كلمة السر
 unlockBtn.addEventListener('click', () => {
