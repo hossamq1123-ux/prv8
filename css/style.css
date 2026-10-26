@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Tajawal', sans-serif;
+}
+
+body {
+    background-color: #111; /* خلفية داكنة تناسب جو الغموض */
+    color: #fff;
+    overflow: hidden;
+}
+
+.screen {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* تنسيق المقلب */
+#fake-error h1 {
+    font-size: 4rem;
+    color: #ff4757;
+    font-family: monospace;
+}
+#fake-error p {
+    font-family: monospace;
+    color: #2ed573;
+}
+
+/* تنسيق شاشة القفل */
+.lock-container {
+    background: #222;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+input {
+    padding: 10px;
+    margin: 20px 0;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    letter-spacing: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    background: #ff4757;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ff6b81;
+}
+
+.error-text {
+    color: #ff4757;
+    margin-top: 10px;
+}
