@@ -1,4 +1,6 @@
+// =========================================
 // المتغيرات الأساسية
+// =========================================
 const fakeError = document.getElementById('fake-error');
 const passwordScreen = document.getElementById('password-screen');
 const mainContent = document.getElementById('main-content');
@@ -6,15 +8,16 @@ const passwordInput = document.getElementById('password-input');
 const unlockBtn = document.getElementById('unlock-btn');
 const errorMsg = document.getElementById('error-msg');
 
-// كلمة السر مدة المقلب (60 ثانية)
+// الرقم السري مدة المقلب (حالياً دقيقة = 60000)
 const CORRECT_PASSWORD = "2910"; 
 
 setTimeout(() => {
     fakeError.classList.add('hidden');
     setTimeout(() => {
         passwordScreen.classList.remove('hidden');
-    }, 1000); 
-}, 10000);
+        passwordScreen.style.zIndex = "5";
+    }, 800); // 800 جزء من الثانية ليتماشى مع نعومة الانتقال الجديد
+}, 60000);
 
 // التحقق من كلمة السر
 unlockBtn.addEventListener('click', () => {
@@ -22,24 +25,44 @@ unlockBtn.addEventListener('click', () => {
         passwordScreen.classList.add('hidden');
         setTimeout(() => {
             mainContent.classList.remove('hidden');
+            mainContent.style.zIndex = "5";
             startWelcomeSequence(); 
-        }, 1000);
+        }, 800);
     } else {
         errorMsg.classList.remove('hidden');
         passwordInput.value = ""; 
+        // إعادة تحريك كلاس الاهتزاز
+        errorMsg.style.animation = 'none';
+        errorMsg.offsetHeight; 
+        errorMsg.style.animation = null; 
     }
 });
 
+// =========================================
 // متغيرات الترحيب والموسيقى
-const welcomeTextElement = document.getElementById(' هلا والله بكهلتنا كل عام وانتي بخير وصحة وسلامة والله يجعلها سنين مديدة وسعيدة الاغلب شارك في الفقره الجاية ونختبر ذاكرتك خرفتي ولا باقي (( مو مهم النتيجة اهم شيء تنبسطي )) ');
+// =========================================
+const welcomeTextElement = document.getElementById('welcome-text');
 const musicControls = document.getElementById('music-controls');
 const seriousBtn = document.getElementById('serious-music-btn');
 const funnyBtn = document.getElementById('funny-music-btn');
 const seriousAudio = document.getElementById('serious-audio');
 const funnyAudio = document.getElementById('funny-audio');
+const volumeControl = document.getElementById('volume-control');
 const nextGameBtn = document.getElementById('next-game-btn');
+const gameScreen = document.getElementById('game-screen');
 
-const welcomeMessage = "كل عام وأنتِ بخير! كبرتي سنة وصار عمرك... لحظة، كم صار؟ ما علينا! المهم إنك أجمل من كبر. هذي الصفحة صُممت خصيصاً لك، بس عشان تاخذين هديتك لازم تنجحين في الاختبار الجاي!";
+// ضبط مستوى الصوت الافتراضي على النص (50%)
+seriousAudio.volume = 0.5;
+funnyAudio.volume = 0.5;
+
+volumeControl.addEventListener('input', (e) => {
+    seriousAudio.volume = e.target.value;
+    funnyAudio.volume = e.target.value;
+});
+
+const welcomeMessage = "أهلاً وسهلاً بعجوزتنا الحارثية! 👵 كبرتي وصرتي من جيل الطيبين. كل عام وأنتِ بخير يا أحلى من يكبر. هذي الصفحة صممناها عشان نختبر ذاكرتك قبل ما تفقدينها تماماً 😂، جاهزة للتحدي عشان تاخذين الهدية الكبيرة؟";
+
+const welcomeChars = [...welcomeMessage]; 
 let charIndex = 0;
 
 function startWelcomeSequence() {
@@ -48,24 +71,42 @@ function startWelcomeSequence() {
 }
 
 function typeWriter() {
-    if (charIndex < welcomeMessage.length) {
-        welcomeTextElement.textContent += welcomeMessage.charAt(charIndex);
+    if (charIndex < welcomeChars.length) {
+        welcomeTextElement.textContent += welcomeChars[charIndex];
         charIndex++;
-        setTimeout(typeWriter, 50); 
+        setTimeout(typeWriter, 40); // سرعنا الكتابة قليلاً لتناسب الحماس
     } else {
         nextGameBtn.classList.remove('hidden');
         welcomeTextElement.style.borderLeft = "none"; 
     }
 }
 
+// تغيير ستايل الأزرار عند اختيار الموسيقى
+function updateMusicButtons(activeBtn, inactiveBtn) {
+    activeBtn.classList.remove('outline');
+    inactiveBtn.classList.add('outline');
+}
+
 seriousBtn.addEventListener('click', () => {
     funnyAudio.pause();
     seriousAudio.play();
-    document.getElementById('main-content').style.backgroundColor = "#1a1a2e"; 
+    updateMusicButtons(seriousBtn, funnyBtn);
 });
 
 funnyBtn.addEventListener('click', () => {
     seriousAudio.pause();
     funnyAudio.play();
-    document.getElementById('main-content').style.backgroundColor = "#ff4757"; 
+    updateMusicButtons(funnyBtn, seriousBtn);
+});
+
+// =========================================
+// الانتقال للشاشة الرابعة (لعبة الأسئلة)
+// =========================================
+nextGameBtn.addEventListener('click', () => {
+    mainContent.classList.add('hidden');
+    
+    setTimeout(() => {
+        gameScreen.classList.remove('hidden');
+        gameScreen.style.zIndex = "5";
+    }, 800);
 });
