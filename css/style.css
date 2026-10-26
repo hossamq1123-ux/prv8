@@ -8,7 +8,7 @@
 }
 
 body {
-    background-color: #111; /* خلفية داكنة تناسب جو الغموض */
+    background-color: #111; /* خلفية داكنة */
     color: #fff;
     overflow: hidden;
 }
@@ -37,77 +37,80 @@ body {
 }
 
 /* =========================================
-   تنسيقات شاشة المقلب (الكورنيش، المطر، العجوز)
+   تنسيقات شاشة المقلب (فيديو واقعي وتصميم زجاجي)
    ========================================= */
-
-/* رسم الكورنيش (سماء مظلمة، جدار، ورصيف) */
 #fake-error {
-    background: linear-gradient(to bottom, #0f172a 0%, #1e293b 55%, #020617 55%, #334155 60%, #1e293b 100%);
     position: relative;
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* تكبير نصوص الخطأ وإضافة توهج */
+/* ملء الشاشة بالفيديو */
+.bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* تعتيم الفيديو قليلاً ليبرز مربع الخطأ */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); 
+    z-index: -1;
+}
+
+/* تصميم المربع بشكل زجاجي أنيق واحترافي */
 #fake-error .error-container {
-    z-index: 10;
     position: relative;
-    background: rgba(0, 0, 0, 0.5); /* خلفية شفافة بسيطة للنص لتوضيحه */
-    padding: 30px;
-    border-radius: 15px;
-    border: 2px dashed #ff4757;
+    background: rgba(20, 20, 20, 0.6); /* لون أسود شفاف */
+    padding: 50px 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* حدود زجاجية */
+    backdrop-filter: blur(8px); /* غبش الخلفية */
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    text-align: center;
+    z-index: 10;
+    animation: fadeIn 2s ease-in-out;
 }
 
 #fake-error h3 {
-    font-size: 6rem; /* تكبير الخط جداً */
+    font-size: 5rem;
     color: #ff4757;
-    font-family: monospace;
-    text-shadow: 0 0 20px rgba(255, 71, 87, 0.8); /* إضاءة حمراء */
+    font-family: 'Courier New', Courier, monospace;
+    text-shadow: 0 0 20px rgba(255, 71, 87, 0.9); /* إضاءة حمراء قوية */
     margin-bottom: 20px;
+    letter-spacing: 3px;
 }
 
 #fake-error p {
-    font-size: 2.5rem; /* تكبير النص العربي */
-    color: #2ed573;
-    font-family: 'Tajawal', monospace;
+    font-size: 2.2rem;
+    color: #f1f2f6; /* لون أبيض مائل للرمادي ليكون مريح للعين */
+    font-family: 'Tajawal', sans-serif;
     font-weight: bold;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
 }
 
-/* تأثير البرق في الخلفية (يضرب كل 8 ثواني) */
-.lightning {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: white;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 1;
-    animation: flash 8s infinite;
+/* تأثير دخول ناعم للمربع */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
 }
-
-@keyframes flash {
-    0%, 95%, 98% { opacity: 0; }
-    96%, 99% { opacity: 0.8; }
-}
-
-/* العجوز تمشي على الكورنيش */
-.old-woman {
-    position: absolute;
-    bottom: 12%; /* تمشي على مسار الرصيف */
-    right: -20%; /* تبدأ من خارج الشاشة يميناً */
-    font-size: 5rem; /* حجم العجوز */
-    z-index: 5;
-    /* تحريك من اليمين لليسار خلال 60 ثانية بخطوة منتظمة */
-    animation: walkCorniche 60s linear forwards; 
-    filter: drop-shadow(5px 15px 5px rgba(0,0,0,0.5)); /* ظل على الأرض */
-}
-
-@keyframes walkCorniche {
-    0% { right: -20%; }
-    100% { right: 120%; } /* تختفي خارج الشاشة يساراً */
-}
-
 
 /* =========================================
-   تنسيقات شاشة القفل 
+   تنسيقات شاشة القفل (كلمة السر)
    ========================================= */
 .lock-container {
     background: #222;
