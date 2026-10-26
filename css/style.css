@@ -36,18 +36,79 @@ body {
     z-index: -1;
 }
 
-/* تنسيق المقلب */
-#fake-error h1 {
-    font-size: 4rem;
-    color: #ff4757;
-    font-family: monospace;
-}
-#fake-error p {
-    font-family: monospace;
-    color: #2ed573;
+/* =========================================
+   تنسيقات شاشة المقلب (الكورنيش، المطر، العجوز)
+   ========================================= */
+
+/* رسم الكورنيش (سماء مظلمة، جدار، ورصيف) */
+#fake-error {
+    background: linear-gradient(to bottom, #0f172a 0%, #1e293b 55%, #020617 55%, #334155 60%, #1e293b 100%);
+    position: relative;
+    overflow: hidden;
 }
 
-/* تنسيق شاشة القفل */
+/* تكبير نصوص الخطأ وإضافة توهج */
+#fake-error .error-container {
+    z-index: 10;
+    position: relative;
+    background: rgba(0, 0, 0, 0.5); /* خلفية شفافة بسيطة للنص لتوضيحه */
+    padding: 30px;
+    border-radius: 15px;
+    border: 2px dashed #ff4757;
+}
+
+#fake-error h3 {
+    font-size: 6rem; /* تكبير الخط جداً */
+    color: #ff4757;
+    font-family: monospace;
+    text-shadow: 0 0 20px rgba(255, 71, 87, 0.8); /* إضاءة حمراء */
+    margin-bottom: 20px;
+}
+
+#fake-error p {
+    font-size: 2.5rem; /* تكبير النص العربي */
+    color: #2ed573;
+    font-family: 'Tajawal', monospace;
+    font-weight: bold;
+}
+
+/* تأثير البرق في الخلفية (يضرب كل 8 ثواني) */
+.lightning {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: white;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+    animation: flash 8s infinite;
+}
+
+@keyframes flash {
+    0%, 95%, 98% { opacity: 0; }
+    96%, 99% { opacity: 0.8; }
+}
+
+/* العجوز تمشي على الكورنيش */
+.old-woman {
+    position: absolute;
+    bottom: 12%; /* تمشي على مسار الرصيف */
+    right: -20%; /* تبدأ من خارج الشاشة يميناً */
+    font-size: 5rem; /* حجم العجوز */
+    z-index: 5;
+    /* تحريك من اليمين لليسار خلال 60 ثانية بخطوة منتظمة */
+    animation: walkCorniche 60s linear forwards; 
+    filter: drop-shadow(5px 15px 5px rgba(0,0,0,0.5)); /* ظل على الأرض */
+}
+
+@keyframes walkCorniche {
+    0% { right: -20%; }
+    100% { right: 120%; } /* تختفي خارج الشاشة يساراً */
+}
+
+
+/* =========================================
+   تنسيقات شاشة القفل 
+   ========================================= */
 .lock-container {
     background: #222;
     padding: 30px;
