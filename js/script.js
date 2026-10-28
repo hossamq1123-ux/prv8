@@ -8,7 +8,7 @@ const passwordInput = document.getElementById('password-input');
 const unlockBtn = document.getElementById('unlock-btn');
 const errorMsg = document.getElementById('error-msg');
 
-// الرقم السري مدة المقلب (60000 = دقيقة)
+// الرقم السري
 const CORRECT_PASSWORD = "2910"; 
 
 setTimeout(() => {
@@ -17,7 +17,7 @@ setTimeout(() => {
         passwordScreen.classList.remove('hidden');
         passwordScreen.style.zIndex = "5";
     }, 800); 
-}, 5000);
+}, 5000); // تم تعديلها إلى 5 ثوانٍ بناءً على كودك
 
 // التحقق من كلمة السر
 unlockBtn.addEventListener('click', () => {
@@ -70,7 +70,6 @@ let charIndex = 0;
 
 function startWelcomeSequence() {
     musicControls.classList.remove('hidden');
-    // إخفاء مؤشر الكتابة مؤقتاً وإظهار الزر الأول
     welcomeTextElement.style.borderLeft = "none";
     prankBtn1.classList.remove('hidden');
 }
@@ -80,7 +79,6 @@ prankBtn1.addEventListener('click', () => {
     prankBtn1.classList.add('hidden');
     welcomeTextElement.textContent = "خرفتي وانحولتي بعد 😂";
     
-    // يظهر الزر الثاني بعد 3 ثواني
     setTimeout(() => {
         prankBtn2.classList.remove('hidden');
     }, 3000);
@@ -90,7 +88,6 @@ prankBtn2.addEventListener('click', () => {
     prankBtn2.classList.add('hidden');
     welcomeTextElement.textContent = "الله لا يبلانا 🤦‍♀️";
     
-    // يظهر الزر الثالث بعد 3 ثواني
     setTimeout(() => {
         prankBtn3.classList.remove('hidden');
     }, 3000);
@@ -98,18 +95,17 @@ prankBtn2.addEventListener('click', () => {
 
 prankBtn3.addEventListener('click', () => {
     prankBtn3.classList.add('hidden');
-    welcomeTextElement.textContent = ""; // تفريغ النص
-    welcomeTextElement.style.borderLeft = "3px solid var(--primary)"; // إرجاع مؤشر الكتابة
+    welcomeTextElement.textContent = ""; 
+    welcomeTextElement.style.borderLeft = "3px solid var(--primary)"; 
     charIndex = 0;
-    typeWriter(); // تشغيل الآلة الكاتبة ببطء
+    typeWriter(); 
 });
 
-// الآلة الكاتبة (معدلة للسرعة البطيئة)
 function typeWriter() {
     if (charIndex < welcomeChars.length) {
         welcomeTextElement.textContent += welcomeChars[charIndex];
         charIndex++;
-        setTimeout(typeWriter, 120); // السرعة بطيئة (120)
+        setTimeout(typeWriter, 120); 
     } else {
         nextGameBtn.classList.remove('hidden');
         welcomeTextElement.style.borderLeft = "none"; 
@@ -134,7 +130,7 @@ funnyBtn.addEventListener('click', () => {
 });
 
 // =========================================
-// الانتقال للشاشة الرابعة (لعبة الأسئلة)
+// الانتقال لرحلة المنطاد بالتمرير
 // =========================================
 nextGameBtn.addEventListener('click', () => {
     mainContent.classList.add('hidden');
@@ -142,5 +138,26 @@ nextGameBtn.addEventListener('click', () => {
     setTimeout(() => {
         gameScreen.classList.remove('hidden');
         gameScreen.style.zIndex = "5";
+        gameScreen.scrollTop = 0; // لضمان بداية التمرير من أعلى الصفحة
     }, 800);
+});
+
+// تأثير صعود المنطاد للقمر في نهاية التمرير
+gameScreen.addEventListener('scroll', () => {
+    const scrollTop = gameScreen.scrollTop;
+    const maxScroll = gameScreen.scrollHeight - gameScreen.clientHeight;
+    
+    const scrollPercent = scrollTop / maxScroll;
+    const balloon = document.getElementById('hot-air-balloon');
+    
+    // إذا وصل المستخدم لنهاية الصفحة (الفضاء)
+    if (scrollPercent > 0.9) {
+        balloon.style.bottom = "50%";
+        balloon.style.transform = "translate(-50%, -50%) scale(0.5)";
+        balloon.style.opacity = "0.7";
+    } else {
+        balloon.style.bottom = "20%";
+        balloon.style.transform = "translate(-50%, 0) scale(1)";
+        balloon.style.opacity = "1";
+    }
 });
