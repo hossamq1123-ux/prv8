@@ -72,7 +72,7 @@ function startWelcomeSequence() {
 
 prankBtn1.addEventListener('click', () => {
     prankBtn1.classList.add('hidden');
-    welcomeTextElement.textContent = "خرفتي وانحولتي بعد 😂";
+    welcomeTextElement.textContent = "خرفتي وانحولتي بعد ";
     
     setTimeout(() => {
         prankBtn2.classList.remove('hidden');
@@ -81,7 +81,7 @@ prankBtn1.addEventListener('click', () => {
 
 prankBtn2.addEventListener('click', () => {
     prankBtn2.classList.add('hidden');
-    welcomeTextElement.textContent = "الله لا يبلانا 🤦‍♀️";
+    welcomeTextElement.textContent = "الله لا يبلانا ";
     
     setTimeout(() => {
         prankBtn3.classList.remove('hidden');
