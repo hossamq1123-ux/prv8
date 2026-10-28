@@ -8,7 +8,6 @@ const passwordInput = document.getElementById('password-input');
 const unlockBtn = document.getElementById('unlock-btn');
 const errorMsg = document.getElementById('error-msg');
 
-// الرقم السري
 const CORRECT_PASSWORD = "2910"; 
 
 setTimeout(() => {
@@ -17,9 +16,8 @@ setTimeout(() => {
         passwordScreen.classList.remove('hidden');
         passwordScreen.style.zIndex = "5";
     }, 800); 
-}, 5000); // تم تعديلها إلى 5 ثوانٍ بناءً على كودك
+}, 5000); 
 
-// التحقق من كلمة السر
 unlockBtn.addEventListener('click', () => {
     if (passwordInput.value === CORRECT_PASSWORD) {
         passwordScreen.classList.add('hidden');
@@ -50,12 +48,10 @@ const volumeControl = document.getElementById('volume-control');
 const nextGameBtn = document.getElementById('next-game-btn');
 const gameScreen = document.getElementById('game-screen');
 
-// أزرار المقلب
 const prankBtn1 = document.getElementById('prank-btn-1');
 const prankBtn2 = document.getElementById('prank-btn-2');
 const prankBtn3 = document.getElementById('prank-btn-3');
 
-// ضبط الصوت الافتراضي
 seriousAudio.volume = 0.5;
 funnyAudio.volume = 0.5;
 
@@ -74,7 +70,6 @@ function startWelcomeSequence() {
     prankBtn1.classList.remove('hidden');
 }
 
-// برمجة مقلب الأزرار المتسلسلة
 prankBtn1.addEventListener('click', () => {
     prankBtn1.classList.add('hidden');
     welcomeTextElement.textContent = "خرفتي وانحولتي بعد 😂";
@@ -130,7 +125,7 @@ funnyBtn.addEventListener('click', () => {
 });
 
 // =========================================
-// الانتقال لرحلة المنطاد بالتمرير
+// تأثيرات الرحلة السينمائية 3D (المنطاد والقمر)
 // =========================================
 nextGameBtn.addEventListener('click', () => {
     mainContent.classList.add('hidden');
@@ -138,26 +133,49 @@ nextGameBtn.addEventListener('click', () => {
     setTimeout(() => {
         gameScreen.classList.remove('hidden');
         gameScreen.style.zIndex = "5";
-        gameScreen.scrollTop = 0; // لضمان بداية التمرير من أعلى الصفحة
+        gameScreen.scrollTop = 0;
     }, 800);
 });
 
-// تأثير صعود المنطاد للقمر في نهاية التمرير
 gameScreen.addEventListener('scroll', () => {
     const scrollTop = gameScreen.scrollTop;
     const maxScroll = gameScreen.scrollHeight - gameScreen.clientHeight;
     
+    // نسبة التمرير من 0 (الأرض) إلى 1 (القمر)
     const scrollPercent = scrollTop / maxScroll;
-    const balloon = document.getElementById('hot-air-balloon');
     
-    // إذا وصل المستخدم لنهاية الصفحة (الفضاء)
-    if (scrollPercent > 0.9) {
-        balloon.style.bottom = "50%";
-        balloon.style.transform = "translate(-50%, -50%) scale(0.5)";
-        balloon.style.opacity = "0.7";
+    const balloon = document.getElementById('hot-air-balloon');
+    const balloonImg = document.getElementById('balloon-img');
+    const stars = document.getElementById('stars-layer');
+    const finalMsg = document.getElementById('final-message');
+    const indicator = document.getElementById('scroll-indicator');
+    
+    // إخفاء إرشاد السحب عند النزول
+    if (scrollTop > 100) indicator.style.opacity = "0";
+    else indicator.style.opacity = "1";
+
+    // إظهار النجوم تدريجياً
+    stars.style.opacity = scrollPercent > 0.3 ? (scrollPercent - 0.3) * 1.5 : 0;
+
+    // اهتزاز المنطاد لمحاكاة الرياح
+    const sway = Math.sin(scrollPercent * Math.PI * 6) * 30; 
+    
+    // الوصول للقمر
+    if (scrollPercent > 0.95) {
+        balloon.style.transform = `translate(-50%, 0)`; 
+        balloon.style.bottom = "45%"; 
+        
+        balloonImg.style.transform = "scale(0.25)"; 
+        balloonImg.style.opacity = "0.7"; 
+        
+        finalMsg.classList.add('show');
     } else {
-        balloon.style.bottom = "20%";
-        balloon.style.transform = "translate(-50%, 0) scale(1)";
-        balloon.style.opacity = "1";
+        balloon.style.transform = `translate(calc(-50% + ${sway}px), 0)`;
+        balloon.style.bottom = "15%";
+        
+        balloonImg.style.transform = "scale(1)";
+        balloonImg.style.opacity = "1";
+        
+        finalMsg.classList.remove('show');
     }
 });
