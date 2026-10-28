@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
 
-/* متغيرات الألوان الحديثة */
 :root {
     --bg-color: #0f172a; 
     --surface-color: rgba(30, 41, 59, 0.6); 
@@ -50,9 +49,7 @@ body {
     z-index: -1;
 }
 
-/* =========================================
-   البطاقات الزجاجية الحديثة (Glassmorphism)
-   ========================================= */
+/* البطاقات الزجاجية الحديثة */
 .glass-card {
     background: var(--surface-color);
     backdrop-filter: blur(16px);
@@ -77,9 +74,7 @@ body {
     margin-bottom: 25px;
 }
 
-/* =========================================
-   المدخلات والأزرار (Inputs & Buttons)
-   ========================================= */
+/* المدخلات والأزرار */
 .modern-input {
     background: rgba(0, 0, 0, 0.2);
     border: 2px solid var(--glass-border);
@@ -131,9 +126,7 @@ body {
     background: rgba(244, 63, 94, 0.1);
 }
 
-/* =========================================
-   تخصيص شريط الصوت (Custom Range Slider)
-   ========================================= */
+/* تخصيص شريط الصوت */
 .volume-container {
     display: flex;
     align-items: center;
@@ -167,9 +160,7 @@ body {
     transform: scale(1.2);
 }
 
-/* =========================================
-   شاشة المقلب (Error 404)
-   ========================================= */
+/* شاشة المقلب والفيديو */
 #fake-error {
     display: flex;
     justify-content: center;
@@ -199,9 +190,7 @@ body {
     font-family: 'Courier New', monospace;
 }
 
-/* =========================================
-   شاشة القفل والأيقونة
-   ========================================= */
+/* شاشة القفل والترحيب */
 .icon-glow {
     font-size: 3.5rem;
     margin-bottom: 15px;
@@ -221,9 +210,6 @@ body {
     75% { transform: translateX(10px); }
 }
 
-/* =========================================
-   شاشة الترحيب والموسيقى
-   ========================================= */
 .btn-group {
     display: flex;
     gap: 10px;
@@ -259,87 +245,72 @@ body {
 }
 
 /* =========================================
-   تنسيقات شاشة المنطاد والرحلة (الشاشة الرابعة)
+   تنسيقات الشاشة السينمائية (المنطاد والقمر 3D)
    ========================================= */
 .balloon-screen {
-    overflow-y: auto; /* السماح بالتمرير هنا فقط */
+    overflow-y: auto; 
     overflow-x: hidden;
     scroll-behavior: smooth;
+    perspective: 1px;
 }
 
 .scroll-journey {
     position: relative;
     width: 100%;
-    height: 400vh; /* طول الصفحة للتمرير */
+    height: 400vh; 
 }
 
-/* تدرج السماء إلى الفضاء */
+/* السماء والنجوم المبرمجة */
 .journey-bg {
-    position: absolute;
+    position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(
-        to bottom, 
-        #4facfe 0%,    /* سماء الصباح/الأرض */
-        #1e3c72 30%,   /* سماء ليلية */
-        #0f172a 60%,   /* بداية الفضاء */
-        #000000 100%   /* عمق الفضاء */
-    );
+    background: linear-gradient(to bottom, #4facfe 0%, #1e3c72 40%, #0f172a 70%, #050505 100%);
     z-index: -3;
+    transition: background-position 0.5s ease;
 }
 
-/* المنطاد ثابت في منتصف الشاشة أثناء التمرير */
+.stars-layer {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 150px 70px, #fffafa, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 50px 160px, #fffae6, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 200px 120px, #e6f0ff, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 250px 250px;
+    opacity: 0; 
+    z-index: -2;
+    transition: opacity 0.5s ease;
+}
+
+/* المنطاد الواقعي */
 .hot-air-balloon {
     position: fixed;
-    bottom: 20%;
+    bottom: 15%;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 6rem;
     z-index: 10;
-    animation: floatBalloon 3s ease-in-out infinite;
-    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
-    transition: all 1s ease;
+    will-change: transform;
 }
 
-@keyframes floatBalloon {
-    0%, 100% { transform: translate(-50%, 0); }
-    50% { transform: translate(-50%, -20px); }
+.hot-air-balloon img {
+    width: 180px;
+    filter: drop-shadow(0 25px 20px rgba(0,0,0,0.6));
+    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 1.5s ease;
+    animation: hoverBalloon 4s ease-in-out infinite;
 }
 
-/* إرشادات البداية */
-.scroll-indicator {
-    position: absolute;
-    top: 10vh;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.5rem;
+@keyframes hoverBalloon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
 }
 
-.scroll-indicator .arrow-down {
-    font-size: 2.5rem;
-    margin-top: 15px;
-    animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-20px); }
-    60% { transform: translateY(-10px); }
-}
-
-.cloud {
-    position: absolute;
-    font-size: 5rem;
-    opacity: 0.7;
-    z-index: -1;
-}
-
-/* منطقة الفضاء والقمر في آخر التمرير */
+/* القمر السينمائي 3D */
 .space-destination {
     position: absolute;
-    bottom: 5vh; 
+    bottom: 10vh; 
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
@@ -349,35 +320,60 @@ body {
     z-index: 5;
 }
 
-.moon {
-    font-size: 12rem;
-    margin-bottom: 20px;
-    filter: drop-shadow(0 0 50px rgba(255, 255, 255, 0.7));
+.realistic-moon {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fffde7, #e0d4b8 60%, #1a1a1a 100%);
+    box-shadow: 
+        0 0 80px rgba(255, 253, 231, 0.6),
+        inset -30px -30px 50px rgba(0, 0, 0, 0.9),
+        inset 10px 10px 30px rgba(255, 255, 255, 0.8);
+    margin-bottom: 50px;
+    position: relative;
 }
 
-.stars {
-    font-size: 2rem;
-    letter-spacing: 20px;
-    margin-bottom: 40px;
-    animation: twinkle 1.5s infinite alternate;
-}
-
-@keyframes twinkle {
-    from { opacity: 0.2; }
-    to { opacity: 1; }
-}
-
+/* الرسالة الختامية */
 .final-message {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s ease 0.5s;
     text-align: center;
 }
 
-.final-message h2 {
-    font-size: 2.5rem;
-    color: var(--primary);
-    margin-bottom: 15px;
+.final-message.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.final-message p {
-    font-size: 1.5rem;
-    line-height: 1.6;
+.final-message h2 {
+    font-size: 2.8rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+    text-shadow: 0 0 15px rgba(244, 63, 94, 0.5);
+}
+
+.final-message p { 
+    font-size: 1.5rem; 
+    line-height: 1.6; 
+}
+
+/* المؤشر */
+.scroll-indicator {
+    position: fixed;
+    bottom: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+}
+
+.scroll-indicator .arrow-down {
+    font-size: 2.5rem;
+    margin-top: 15px;
+    animation: bounce 2s infinite;
 }
