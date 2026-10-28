@@ -39,10 +39,10 @@
             
             <!-- أزرار الموسيقى والتحكم بالصوت -->
             <div class="music-controls hidden" id="music-controls">
-                <p class="subtitle">اختاري المود قبل ما تقرين:</p>
+                <p class="subtitle"> اغاني على ذوقك </p>
                 <div class="btn-group">
-                    <button id="serious-music-btn" class="modern-btn outline">موسيقى هادية 🎵</button>
-                    <button id="funny-music-btn" class="modern-btn outline">موسيقى فصلة 🤪</button>
+                    <button id="serious-music-btn" class="modern-btn outline"> اغنية رايقة </button>
+                    <button id="funny-music-btn" class="modern-btn outline"> افضل اغنية عندك </button>
                 </div>
                 <!-- التحكم بالصوت -->
                 <div class="volume-container">
@@ -54,15 +54,15 @@
             <!-- رسالة الترحيب وأزرار المقلب -->
             <div class="message-box">
                 <!-- أزرار المقلب المتسلسلة -->
-                <button id="prank-btn-1" class="modern-btn hidden" style="margin-top: 20px;">اضغطي هنا لعرض الرسالة 💌</button>
-                <button id="prank-btn-2" class="modern-btn hidden" style="margin-top: 20px;">الزر معلق؟ جربي تضغطين هنا 🧐</button>
-                <button id="prank-btn-3" class="modern-btn hidden" style="margin-top: 20px;">خلاص أمزح 😂 اضغطي للرسالة الحقيقية</button>
+                <button id="prank-btn-1" class="modern-btn hidden" style="margin-top: 20px;">رسالة خاصة لك</button>
+                <button id="prank-btn-2" class="modern-btn hidden" style="margin-top: 20px;">قلنا خاصة افهمي </button>
+                <button id="prank-btn-3" class="modern-btn hidden" style="margin-top: 20px;"> لازم بروبوقاندا عشان تفتح </button>
                 
                 <h1 id="welcome-text"></h1>
             </div>
 
-            <!-- زر الانتقال للعبة -->
-            <button id="next-game-btn" class="modern-btn pulse-btn hidden">جاهزة للتحدي؟ 👀</button>
+            <!-- زر الانتقال للرحلة -->
+            <button id="next-game-btn" class="modern-btn pulse-btn hidden"> يتم تغييرها الى رساله من فتات الميلاد شخصياً  </button>
         </div>
 
         <!-- ملفات الصوت -->
@@ -70,11 +70,36 @@
         <audio id="funny-audio" src="assets/funny.mp3" loop></audio>
     </div>
 
-    <!-- الشاشة الرابعة: لعبة الأسئلة (مجهزة للتصميم الحديث) -->
-    <div id="game-screen" class="screen flex-center hidden">
-        <div class="glass-card quiz-container">
-            <h2>لعبة الأسئلة 🧠</h2>
-            <p class="subtitle">التصميم الحديث جاهز لاستقبال الأسئلة...</p>
+    <!-- الشاشة الرابعة: رحلة المنطاد عبر التمرير -->
+    <div id="game-screen" class="screen hidden balloon-screen">
+        <div class="scroll-journey" id="scroll-journey">
+            <!-- خلفية الرحلة متدرجة من الأرض للفضاء -->
+            <div class="journey-bg"></div>
+
+            <!-- المنطاد الثابت أثناء التمرير -->
+            <div class="hot-air-balloon" id="hot-air-balloon">🎈</div>
+
+            <!-- إرشادات البداية -->
+            <div class="scroll-indicator">
+                <p>انزلي الشاشة لتحت عشان تبدأ الرحلة</p>
+                <div class="arrow-down">⬇️</div>
+            </div>
+
+            <!-- عناصر تمر في الطريق (غيوم تمر أثناء التمرير) -->
+            <div class="cloud" style="top: 15%; left: 10%;">☁️</div>
+            <div class="cloud" style="top: 30%; right: 15%; font-size: 6rem;">☁️</div>
+            <div class="cloud" style="top: 50%; left: 25%;">☁️</div>
+            <div class="cloud" style="top: 70%; right: 20%; opacity: 0.4;">☁️</div>
+
+            <!-- نهاية الرحلة (الفضاء) -->
+            <div class="space-destination">
+                <div class="moon">🌕</div>
+                <div class="stars">✨ ⭐ 🌟 🌌</div>
+                <div class="final-message glass-card">
+                    <h2>وصلتي القمر! 🚀</h2>
+                    <p>هنا أكتب النص اللي تبغاه... مثلاً: كل عام وأنتِ الأجمل يا رورو، مثل ما المنطاد وصل القمر، أنتِ مكانك فوق دايم!</p>
+                </div>
+            </div>
         </div>
     </div>
 
