@@ -43,10 +43,10 @@ body {
 }
 
 .hidden {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(0.95);
-    z-index: -1;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: scale(0.95) !important;
+    z-index: -1 !important;
 }
 
 /* البطاقات الزجاجية الحديثة */
