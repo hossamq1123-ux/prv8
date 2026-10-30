@@ -1,9 +1,6 @@
-// التأكد من تحميل الصفحة بالكامل قبل تشغيل الأكواد
 document.addEventListener('DOMContentLoaded', () => {
     
-    // =========================================
     // المتغيرات الأساسية
-    // =========================================
     const fakeError = document.getElementById('fake-error');
     const passwordScreen = document.getElementById('password-screen');
     const mainContent = document.getElementById('main-content');
@@ -27,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // المؤقت التلقائي (5 ثواني)
     const prankTimer = setTimeout(goToPasswordScreen, 5000);
 
-    // ميزة رهيبة لك: اضغط بأي مكان في الشاشة السوداء عشان تتخطى المقلب فوراً بدون ما تنتظر 5 ثواني
+    // تخطي المقلب بالضغط بأي مكان في الشاشة
     fakeError.addEventListener('click', () => {
         clearTimeout(prankTimer);
         goToPasswordScreen();
@@ -46,15 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
             errorMsg.classList.remove('hidden');
             passwordInput.value = ""; 
             errorMsg.style.animation = 'none';
-            // خدعة برمجية لإعادة تشغيل الاهتزاز
             void errorMsg.offsetWidth; 
             errorMsg.style.animation = null; 
         }
     });
 
-    // =========================================
-    // متغيرات الترحيب والموسيقى والمقلب
-    // =========================================
+    // متغيرات الترحيب والموسيقى
     const welcomeTextElement = document.getElementById('welcome-text');
     const musicControls = document.getElementById('music-controls');
     const seriousBtn = document.getElementById('serious-music-btn');
@@ -69,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const prankBtn2 = document.getElementById('prank-btn-2');
     const prankBtn3 = document.getElementById('prank-btn-3');
 
-    // ضبط الصوت الافتراضي
     seriousAudio.volume = 0.5;
     funnyAudio.volume = 0.5;
 
@@ -130,22 +123,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     seriousBtn.addEventListener('click', () => {
         funnyAudio.pause();
-        seriousAudio.play();
+        // معالجة الخطأ برمجياً لتجنب التعليق إذا الملف الصوتي غير موجود
+        seriousAudio.play().catch(e => console.log("الصوت غير موجود"));
         updateMusicButtons(seriousBtn, funnyBtn);
     });
 
     funnyBtn.addEventListener('click', () => {
         seriousAudio.pause();
-        funnyAudio.play();
+        funnyAudio.play().catch(e => console.log("الصوت غير موجود"));
         updateMusicButtons(funnyBtn, seriousBtn);
     });
 
-    // =========================================
-    // تأثيرات الرحلة السينمائية 3D (المنطاد والقمر)
-    // =========================================
+    // تأثيرات الرحلة السينمائية 3D
     nextGameBtn.addEventListener('click', () => {
         mainContent.classList.add('hidden');
-        
         setTimeout(() => {
             gameScreen.classList.remove('hidden');
             gameScreen.style.zIndex = "5";
@@ -156,7 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
     gameScreen.addEventListener('scroll', () => {
         const scrollTop = gameScreen.scrollTop;
         const maxScroll = gameScreen.scrollHeight - gameScreen.clientHeight;
-        
         const scrollPercent = scrollTop / maxScroll;
         
         const balloon = document.getElementById('hot-air-balloon');
