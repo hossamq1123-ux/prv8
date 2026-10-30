@@ -11,6 +11,7 @@
     --glass-border: rgba(255, 255, 255, 0.15);
 }
 
+/* تم تصحيح الخطأ هنا من (-) إلى (*) */
 * {
     margin: 0;
     padding: 0;
@@ -46,7 +47,7 @@ body {
     opacity: 0 !important;
     pointer-events: none !important;
     transform: scale(0.95) !important;
-    z-index: -1 !important;
+    z-index: -10 !important;
 }
 
 /* البطاقات الزجاجية الحديثة */
