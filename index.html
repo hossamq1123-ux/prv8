@@ -9,9 +9,8 @@
 <body>
     
     <!-- الشاشة الأولى: المقلب (خطأ 404) -->
-    <div id="fake-error" class="screen">
+    <div id="fake-error" class="screen" style="cursor: pointer;">
         <video autoplay muted loop playsinline class="bg-video">
-            <!-- غيّرنا الرابط عشان ما يعلق، يرجى وضع فيديو rain.mp4 في مجلد assets لاحقاً -->
             <source src="assets/rain.mp4" type="video/mp4">
         </video>
         <div class="video-overlay"></div>
@@ -19,6 +18,7 @@
         <div class="glass-card error-card">
             <h3 class="glitch-text">Error 404</h3>
             <p>حتى النظام خرب ياكهلة كبرتي ما شاء الله</p>
+            <p style="font-size: 0.9rem; color: #aaa; margin-top: 20px;">(اضغطي أي مكان في الشاشة للمتابعة)</p>
         </div>
     </div>
     
@@ -38,23 +38,19 @@
     <div id="main-content" class="screen flex-center hidden">
         <div class="glass-card welcome-container">
             
-            <!-- أزرار الموسيقى والتحكم بالصوت -->
             <div class="music-controls hidden" id="music-controls">
                 <p class="subtitle"> اغاني على ذوقك </p>
                 <div class="btn-group">
                     <button id="serious-music-btn" class="modern-btn outline"> اغنية رايقة </button>
                     <button id="funny-music-btn" class="modern-btn outline"> افضل اغنية عندك </button>
                 </div>
-                <!-- التحكم بالصوت -->
                 <div class="volume-container">
                     <span>🔊</span>
                     <input type="range" id="volume-control" class="modern-slider" min="0" max="1" step="0.1" value="0.5">
                 </div>
             </div>
             
-            <!-- رسالة الترحيب وأزرار المقلب -->
             <div class="message-box">
-                <!-- أزرار المقلب المتسلسلة -->
                 <button id="prank-btn-1" class="modern-btn hidden" style="margin-top: 20px;">رسالة خاصة لك</button>
                 <button id="prank-btn-2" class="modern-btn hidden" style="margin-top: 20px;">قلنا خاصة افهمي </button>
                 <button id="prank-btn-3" class="modern-btn hidden" style="margin-top: 20px;"> لازم بروبوقاندا عشان تفتح </button>
@@ -62,46 +58,230 @@
                 <h1 id="welcome-text"></h1>
             </div>
 
-            <!-- زر الانتقال للعبة -->
             <button id="next-game-btn" class="modern-btn pulse-btn hidden"> يتم تغييرها الى رساله من فتات الميلاد شخصياً </button>
         </div>
 
-        <!-- ملفات الصوت -->
         <audio id="serious-audio" src="assets/serious.mp3" loop></audio>
         <audio id="funny-audio" src="assets/funny.mp3" loop></audio>
     </div>
 
-    <!-- الشاشة الرابعة: رحلة المنطاد عبر التمرير (النسخة السينمائية) -->
+    <!-- الشاشة الرابعة: رحلة المنطاد السينمائية والواقعية -->
     <div id="game-screen" class="screen hidden balloon-screen">
         <div class="scroll-journey" id="scroll-journey">
             
-            <!-- خلفية السماء والنجوم الواقعية -->
+            <!-- خلفية الرحلة (سماء تتدرج للفضاء) -->
             <div class="journey-bg"></div>
-            <div class="stars-layer" id="stars-layer"></div>
+            
+            <!-- النجوم المتلألئة في طبقة الفضاء (النصف العلوي من الرحلة) -->
+            <div class="stars-layer"></div>
 
-            <!-- المنطاد الحقيقي -->
+            <!-- غيوم 3D متناثرة في طريق الرحلة لإعطاء إحساس الطيران -->
+            <div class="realistic-cloud" style="top: 8%; left: 10%; transform: scale(1.2);"></div>
+            <div class="realistic-cloud" style="top: 18%; right: 5%; transform: scale(0.9); opacity: 0.8;"></div>
+            <div class="realistic-cloud" style="top: 28%; left: 25%; transform: scale(1.5);"></div>
+            <div class="realistic-cloud" style="top: 40%; right: 20%; transform: scale(1); opacity: 0.6;"></div>
+
+            <!-- المنطاد الحقيقي (يتحرك للأعلى أثناء التمرير) -->
             <div class="hot-air-balloon" id="hot-air-balloon">
-                <!-- تأكد من وجود الصورة في مجلد assets -->
                 <img src="assets/balloon.png" alt="Balloon" id="balloon-img">
             </div>
 
             <!-- إرشادات البداية -->
             <div class="scroll-indicator" id="scroll-indicator">
-                <p>اسحبي المنطاد عشان تروحي لك</p>
+                <p>اسحبي الشاشة لتحت عشان المنطاد يطير 🎈</p>
                 <div class="arrow-down">⬇️</div>
             </div>
 
             <!-- نهاية الرحلة (القمر الواقعي) -->
             <div class="space-destination">
-                <div class="realistic-moon" id="realistic-moon"></div>
+                <!-- صورة القمر الحقيقية مع تأثير التوهج -->
+                <img src="assets/moon.png" alt="Moon" class="real-moon-img" id="realistic-moon">
+                
                 <div class="final-message glass-card" id="final-message">
-                    <h2>وصلتي لك </h2>
+                    <h2>وصلتي لك 🌕</h2>
                     <p>أنتِ قمرنا اللي منور دنيتنا، كل عام وأنتِ بخير يا أحلى وأغلى من كبر!</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const fakeError = document.getElementById('fake-error');
+            const passwordScreen = document.getElementById('password-screen');
+            const mainContent = document.getElementById('main-content');
+            const passwordInput = document.getElementById('password-input');
+            const unlockBtn = document.getElementById('unlock-btn');
+            const errorMsg = document.getElementById('error-msg');
+
+            const CORRECT_PASSWORD = "2910"; 
+
+            function goToPasswordScreen() {
+                if (!fakeError.classList.contains('hidden')) {
+                    fakeError.classList.add('hidden');
+                    setTimeout(() => {
+                        passwordScreen.classList.remove('hidden');
+                        passwordScreen.style.zIndex = "5";
+                    }, 800); 
+                }
+            }
+
+            const prankTimer = setTimeout(goToPasswordScreen, 5000);
+
+            fakeError.addEventListener('click', () => {
+                clearTimeout(prankTimer);
+                goToPasswordScreen();
+            });
+
+            unlockBtn.addEventListener('click', () => {
+                if (passwordInput.value === CORRECT_PASSWORD) {
+                    passwordScreen.classList.add('hidden');
+                    setTimeout(() => {
+                        mainContent.classList.remove('hidden');
+                        mainContent.style.zIndex = "5";
+                        startWelcomeSequence(); 
+                    }, 800);
+                } else {
+                    errorMsg.classList.remove('hidden');
+                    passwordInput.value = ""; 
+                    errorMsg.style.animation = 'none';
+                    void errorMsg.offsetWidth; 
+                    errorMsg.style.animation = null; 
+                }
+            });
+
+            const welcomeTextElement = document.getElementById('welcome-text');
+            const musicControls = document.getElementById('music-controls');
+            const seriousBtn = document.getElementById('serious-music-btn');
+            const funnyBtn = document.getElementById('funny-music-btn');
+            const seriousAudio = document.getElementById('serious-audio');
+            const funnyAudio = document.getElementById('funny-audio');
+            const volumeControl = document.getElementById('volume-control');
+            const nextGameBtn = document.getElementById('next-game-btn');
+            const gameScreen = document.getElementById('game-screen');
+
+            const prankBtn1 = document.getElementById('prank-btn-1');
+            const prankBtn2 = document.getElementById('prank-btn-2');
+            const prankBtn3 = document.getElementById('prank-btn-3');
+
+            seriousAudio.volume = 0.5;
+            funnyAudio.volume = 0.5;
+
+            volumeControl.addEventListener('input', (e) => {
+                seriousAudio.volume = e.target.value;
+                funnyAudio.volume = e.target.value;
+            });
+
+            const welcomeMessage = "أهلاً وسهلاً بعجوزتنا الحارثية! 👵 كبرتي وصرتي من جيل الطيبين. كل عام وأنتِ بخير يا أحلى من يكبر. هذي الصفحة صممناها عشان نختبر ذاكرتك قبل ما تفقدينها تماماً 😂، جاهزة للتحدي عشان تاخذين الهدية الكبيرة؟";
+            const welcomeChars = [...welcomeMessage]; 
+            let charIndex = 0;
+
+            function startWelcomeSequence() {
+                musicControls.classList.remove('hidden');
+                welcomeTextElement.style.borderLeft = "none";
+                prankBtn1.classList.remove('hidden');
+            }
+
+            prankBtn1.addEventListener('click', () => {
+                prankBtn1.classList.add('hidden');
+                welcomeTextElement.textContent = "خرفتي وانحولتي بعد 😂";
+                setTimeout(() => {
+                    prankBtn2.classList.remove('hidden');
+                }, 3000);
+            });
+
+            prankBtn2.addEventListener('click', () => {
+                prankBtn2.classList.add('hidden');
+                welcomeTextElement.textContent = "الله لا يبلانا 🤦‍♀️";
+                setTimeout(() => {
+                    prankBtn3.classList.remove('hidden');
+                }, 3000);
+            });
+
+            prankBtn3.addEventListener('click', () => {
+                prankBtn3.classList.add('hidden');
+                welcomeTextElement.textContent = ""; 
+                welcomeTextElement.style.borderLeft = "3px solid var(--primary)"; 
+                charIndex = 0;
+                typeWriter(); 
+            });
+
+            function typeWriter() {
+                if (charIndex < welcomeChars.length) {
+                    welcomeTextElement.textContent += welcomeChars[charIndex];
+                    charIndex++;
+                    setTimeout(typeWriter, 120); 
+                } else {
+                    nextGameBtn.classList.remove('hidden');
+                    welcomeTextElement.style.borderLeft = "none"; 
+                }
+            }
+
+            function updateMusicButtons(activeBtn, inactiveBtn) {
+                activeBtn.classList.remove('outline');
+                inactiveBtn.classList.add('outline');
+            }
+
+            seriousBtn.addEventListener('click', () => {
+                funnyAudio.pause();
+                seriousAudio.play().catch(e => console.log("الصوت غير موجود"));
+                updateMusicButtons(seriousBtn, funnyBtn);
+            });
+
+            funnyBtn.addEventListener('click', () => {
+                seriousAudio.pause();
+                funnyAudio.play().catch(e => console.log("الصوت غير موجود"));
+                updateMusicButtons(funnyBtn, seriousBtn);
+            });
+
+            nextGameBtn.addEventListener('click', () => {
+                mainContent.classList.add('hidden');
+                setTimeout(() => {
+                    gameScreen.classList.remove('hidden');
+                    gameScreen.style.zIndex = "5";
+                    gameScreen.scrollTop = 0;
+                }, 800);
+            });
+
+            // حركة المنطاد الواقعية
+            gameScreen.addEventListener('scroll', () => {
+                const scrollTop = gameScreen.scrollTop;
+                const maxScroll = gameScreen.scrollHeight - gameScreen.clientHeight;
+                const scrollPercent = scrollTop / maxScroll;
+                
+                const balloon = document.getElementById('hot-air-balloon');
+                const balloonImg = document.getElementById('balloon-img');
+                const finalMsg = document.getElementById('final-message');
+                const indicator = document.getElementById('scroll-indicator');
+                
+                // إخفاء مؤشر السحب
+                if (scrollTop > 100) indicator.style.opacity = "0";
+                else indicator.style.opacity = "1";
+
+                // المنطاد يرتفع تدريجياً في الشاشة كلما سحبنا لتحت
+                // يبدأ من 10% تحت ويوصل إلى 50% وسط الشاشة
+                let dynamicBottom = 10 + (scrollPercent * 40); 
+                
+                // اهتزاز المنطاد يمين ويسار مع الهواء
+                const sway = Math.sin(scrollPercent * Math.PI * 10) * 20; 
+                
+                if (scrollPercent > 0.95) {
+                    // إذا وصل للقمر (نهاية الرحلة)
+                    balloon.style.transform = `translate(-50%, 0)`; 
+                    balloon.style.bottom = "50%"; 
+                    balloonImg.style.transform = "scale(0.35)"; 
+                    balloonImg.style.opacity = "0.8"; 
+                    finalMsg.classList.add('show');
+                } else {
+                    // أثناء الطيران
+                    balloon.style.transform = `translate(calc(-50% + ${sway}px), 0)`;
+                    balloon.style.bottom = `${dynamicBottom}%`;
+                    balloonImg.style.transform = "scale(1)";
+                    balloonImg.style.opacity = "1";
+                    finalMsg.classList.remove('show');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
